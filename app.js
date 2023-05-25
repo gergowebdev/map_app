@@ -32,6 +32,36 @@ class Workout {
     }
 }
 
+class Running extends Workout {
+    type = "running";
+    constructor(coords, distance, duration, cadence) {
+        super(coords, distance, duration);
+        this.cadence = cadence;
+        this.calcPace();
+        this._setDescription();
+    }
+
+    calcPace() {
+        this.pace = this.duration / this.distance;
+        return this.pace;
+    }
+}
+
+class Cycling extends Workout {
+    type = "cycling";
+    constructor(coords, distance, duration, elevationGain) {
+        super(coords, distance, duration);
+        this.elevationGain = elevationGain;
+        this.calcSpeed();
+        this._setDescription();
+    }
+
+    calcSpeed() {
+        this.speed = this.distance / this.duration / 60;
+        return this.speed;
+    }
+}
+
 const form = document.querySelector(".form");
 const containerWorkouts = document.querySelector(".workouts");
 const inputType = document.querySelector(".form__input--type");
